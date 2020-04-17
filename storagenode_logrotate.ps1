@@ -16,7 +16,7 @@ $threshold = 1GB
 $keep_logs = 10
 
 foreach ($service in $storagenode, $storagenode_updater) {
-    if ( (Get-Item $service.log).Length / 1GB -ge $threshold ) {
+    if ( (Get-Item $service.log).Length -ge $threshold ) {
         Stop-Service $service.serviceName;
         Start-Sleep $service.timeout;
         Compress-Archive -Path $service.log -Destination ($service.log + "-" + $d + ".zip");
