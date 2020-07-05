@@ -1,27 +1,42 @@
 $d = Get-Date -Format "yyyy-MM-dd-hh-mm"
-$storagenode = @{
-    log = "C:\Program Files\Storj\Storage Node\storagenode.log";
-    serviceName = "storagenode"
-    timeout = 10
-}
-
-$storagenode_updater = @{
-    log = "C:\Program Files\Storj\Storage Node\storagenode-updater.log";
-    serviceName = "storagenode-updater";
-    timeout = 5
-}
+$storagenodes = @(
+    @{
+        log = "X:\storagenode3\node.log";
+        serviceName = "storagenode"
+        timeout = 10
+    },
+    @{
+        log = "Y:\storagenode2\storagenode-updater.log";
+        serviceName = "storagenode-updater";
+        timeout = 5
+    },
+    @{
+        log = "Y:\storagenode2\storagenode.log";
+        serviceName = "storagenode"
+        timeout = 300
+        docker = $true
+    }
+)
 
 # Compress-Archive have a limit of 2GB, so the threshold could not be greater than that
 $threshold = 1GB
 $keep_logs = 10
 
-foreach ($service in $storagenode, $storagenode_updater) {
+foreach ($service in $storagenodes) {
     if ( (Get-Item $service.log).Length -ge $threshold ) {
-        Stop-Service $service.serviceName;
-        Start-Sleep $service.timeout;
+        if ($service.docker) {
+            docker stop -t $service.timeout $service.serviceName
+        } else {
+            Stop-Service $service.serviceName;
+            Start-Sleep $service.timeout;
+        }
         Compress-Archive -Path $service.log -Destination ($service.log + "-" + $d + ".zip");
         Remove-Item $service.log;
-        Start-Service $service.serviceName;
+        if ($service.docker) {
+            docker start $service.serviceName
+        } else {
+            Start-Service $service.serviceName;
+        }
     }
 
     $list_of_logs = Get-ChildItem -File ($service.log + "*.zip");
