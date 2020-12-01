@@ -2,19 +2,25 @@ $d = Get-Date -Format "yyyy-MM-dd-hh-mm"
 $storagenodes = @(
     @{
         log = "X:\storagenode3\node.log";
-        serviceName = "storagenode"
-        timeout = 10
+        serviceName = "storagenode";
+        timeout = 10;
     },
     @{
-        log = "Y:\storagenode2\storagenode-updater.log";
+        log = "X:\storagenode3\storagenode-updater.log";
         serviceName = "storagenode-updater";
-        timeout = 5
+        timeout = 5;
     },
     @{
         log = "Y:\storagenode2\storagenode.log";
-        serviceName = "storagenode"
-        timeout = 300
-        docker = $true
+        serviceName = "storagenode2"
+        timeout = 300;
+        docker = $true;
+    },
+    @{
+        log = "w:\storagenode5\storagenode.log";
+        serviceName = "storagenode5";
+        timeout = 300;
+        docker = $true;
     }
 )
 
