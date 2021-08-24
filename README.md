@@ -1,5 +1,5 @@
 # storagenode_win_log_rotate
-Windows GUI storagenode log rotation script (doesn't compatible with logrotate)
+Windows GUI storagenode log rotation script (does not compatible with logrotate)
 
 Run it in the elevated Powershell:
 
