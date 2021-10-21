@@ -11,6 +11,10 @@ If it would be not enought, then
 Set-ExecutionPolicy Unrestricted
 ```
 
+## Configuration
+Modify script for your case.
+`$storagenodes` variable contains array of hash tables, one hash table per service. See comments inside the script
+
 ## Usage
 Run it in the elevated Powershell:
 
