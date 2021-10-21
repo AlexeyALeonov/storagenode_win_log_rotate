@@ -1,6 +1,17 @@
 # storagenode_win_log_rotate
 Windows GUI storagenode log rotation script (does not compatible with logrotate)
 
+## Allow PowerShell scripts execution
+In the elevated PowerShell
+```
+Set-ExecutionPolicy RemoteSigned
+```
+If it would be not enought, then
+```
+Set-ExecutionPolicy Unrestricted
+```
+
+## Usage
 Run it in the elevated Powershell:
 
 ```
