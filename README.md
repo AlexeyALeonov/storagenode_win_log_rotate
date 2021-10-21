@@ -12,7 +12,7 @@ Set-ExecutionPolicy Unrestricted
 ```
 
 ## Configuration
-Modify script for your case.
+Modify the script for your case.
 `$storagenodes` variable contains array of hash tables, one hash table per service. See comments inside the script
 
 ## Usage
