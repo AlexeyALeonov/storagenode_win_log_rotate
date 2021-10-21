@@ -1,9 +1,14 @@
 $d = Get-Date -Format "yyyy-MM-dd-hh-mm"
 $storagenodes = @(
     @{
+        # Path to the log
         log = "X:\storagenode2\storagenode.log";
+        # Name of the service
         serviceName = "storagenode2";
+        # Timeout to stop service
         timeout = 300;
+        # flag to lets know the script that it's a docker container
+        # if missed or $false - assume that it's a usual Windows Service
         docker = $true;
     },
     @{
